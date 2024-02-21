@@ -152,7 +152,51 @@ a:link, a:visited, a:hover, a:active {text-decoration: none;}
 		    </tr>
 		  </tbody>
 		</table>
-
+			    
+		<h2 style="margin-top: 25px; color: black" id="main">Our Approach to Neuro-symbolic Computing
+			<a class="header-link" href="#fmain" title="Permalink">
+				<span class="sr-only">Permalink</span><i class="fas fa-link"></i>
+			</a>
+		</h2>
+					
+		<p>
+		Neurosymbolic Artificial Intelligence (AI) refers to AI systems that seek to integrate (1) neural network-based methods 
+		with (2) symbolic, knowledge-based approaches [<a href="https://arxiv.org/abs/2305.00813">Sheth2023</a>]. We believe (1) represents low-level, and data-intensive learning 
+		and (2) captures high-level, and reasoning-intensive learning. (1) is very successful in building large models for language 
+		and vision, and learning patterns in the input data. However, their mostly black-box nature does not enable sufficient transparency 
+		and explanability. However, a hybrid approach that incorporates (2) can better mimic human cognition (e.g., semantic memory) than 
+		(1) alone and enable the explainability of model output.  
+		</p>
+		<p>
+		For example, consider the task of pandemic (e.g., COVID-19) forecasting that incorporates predicting the number of infections, 
+		and hospital visits in the near future. Neural network-based models can learn patterns of COVID-19 in time from past data. 
+		Potentially other time-series data from other diseases and even from other domains (e.g., stock market, electricity consumption, etc.) 
+		can help to learn patterns. However, this approach does not involve any reasoning capability on disease physics (how it spreads), 
+		new variants, and other scientific knowledge as well as events such as locking or masking mandates. A Neurosymbolic AI-based approach 
+		incorporates both phenomena to make more accurate and explainable forecasts.
+		</p>
+		<p>
+		Our Neurosymbolic approach to COVID-19 forecasting involves the following individual projects:
+		</p>
+	 	<p>
+		1- Improving COVID-19 Forecasts: In this project we study which neural network-based model performs better against traditional ensemble 
+		methods published by CDC. This project also informs Project (3) below for a backbone architecture for our foundation model.
+		</p>
+		<p>
+		2- COVID-19 Temporal Knowledge Graph: This project aims to generate a very large Temporal Knowledge Graph by using text-extraction 
+		techniques from scientific papers as well as new archives on COVID-19. This knowledge graph constitutes our symbolic representation of a hybrid model.
+		</p>
+		<p>
+		3- Building a Time-Series Foundation Model: This project aims to build a foundation that is trained by a collection of time-series data 
+		on various domains including disease, stock market, energy consumption, etc.
+		</p>
+		<p>
+		4- Multi-modal Time-Series Forecasting: In this project we aim to integrate both symbolic (2) and neural (3) approaches to build a hybrid 
+		architecture for pandemic forecasting. We explore alignment as well as meta-learning among different modalities (text, image, graph) as well as different models (time series, language, knowledge). 
+		</p>
+		
+		<a href="Comparision.png"><img src="photo.jpeg" width="150" height="150"></a> (Click on picture icon to see a representative diagram)</br>     
+			    
 		<h2 style="margin-top: 25px; color: black" id="forecast">COVID-19 Forecasts: A Comparison with CDC Models
 			<a class="header-link" href="#forecast" title="Permalink">
 				<span class="sr-only">Permalink</span><i class="fas fa-link"></i>
