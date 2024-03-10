@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
 <script>
 	// Function to check for query parameters and open a new tab with the PDF
+
+	
 	function checkQueryParam() {
 		// Get the query parameters from the URL
 		const queryParams = new URLSearchParams(window.location.search);
@@ -24,11 +26,66 @@
 		}
 	}
 
+	
+
+
+
+
 	// Attach the checkQueryParam function to the window.onload event
 	window.onload = checkQueryParam;
+
+	document.addEventListener('DOMContentLoaded', (event) => {
+    // Use querySelectorAll to get all elements with the class 'abstract-preview'
+    const abstractPreviews = document.querySelectorAll('.abstract-preview');
+
+    // Add click event listener to each 'abstract-preview' element
+    abstractPreviews.forEach(abstractPreview => {
+        abstractPreview.addEventListener('click', function() {
+            // The corresponding 'abstract-full' element is the next sibling
+            const abstractFull = this.nextElementSibling;
+
+            // Check if the full abstract is found and if it has the right class
+            if (abstractFull && abstractFull.classList.contains('abstract-full')) {
+                // Display the full abstract and hide the preview
+                abstractFull.style.display = 'block';
+                this.style.display = 'none';
+            } else {
+                console.error('Matching element for abstract-full not found.');
+            }
+        });
+    });
+});
+
+
 </script>
 
-  <style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style></head>
+  <style id="fit-vids-style">
+  .fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}
+
+  .abstract-preview {
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 10px;
+    max-height: 5em; /* Adjust as needed based on line height */
+    overflow: hidden;
+}
+
+/* Clear fade effect for the last line */
+
+
+.fade-out {
+    display: inline; /* or 'inline-block', depending on your layout needs */
+    -webkit-mask-image: linear-gradient(to right, black 60%, transparent 100%);
+    mask-image: linear-gradient(to right, black 60%, transparent 100%);
+    color: grey;
+}
+
+
+
+  
+
+
+  </style></head>
 	
   <body class="layout--splash wide">
    
@@ -97,18 +154,20 @@ by <a href="https://www.cs.uga.edu/directory/people/subas-rana">Subas Rana</a>, 
               <img src="https://www.cs.uga.edu/sites/default/files/styles/square_400x400/public/246780674_246073807497129_8084247843698793950_n%20%281%29.jpg?itok=njjquAUU" alt="Subas Rana">
               <div class="details">    <a href="https://www.cs.uga.edu/directory/people/subas-rana">Subas Rana</a>
               </div>
-        </div>
-        <b>Pandemic forecasting for the United States using machine learning models and comparative analysis with CDC models</b>, Doctor of Philosophy (PHD), University of Georgia, 2025 (expected).
-        </p>
-<details>
-    <summary>Abstract</summary>
-<p>
-The outbreak of the COVID-19 pandemic has highlighted the critical need for accurate forecasting models to understand and predict the spread of the virus. 
-This project aims to develop and evaluate machine learning models for COVID-19 forecasting in the United States and compare their performance with models 
-submitted to the Centers for Disease Control and Prevention (CDC). The objective is to enhance the accuracy and effectiveness of pandemic prediction and 
-support informed decision-making.
-</p>
-</details>
+			</div>
+			<b>Pandemic forecasting for the United States using machine learning models and comparative analysis with CDC models</b>, Doctor of Philosophy (PHD), University of Georgia, 2025 (expected).
+			</p>
+			<div class="abstract-preview">
+				The outbreak of the COVID-19 pandemic has highlighted the critical need for accurate forecasting models to understand and predict the spread of the virus.
+				<span class="fade-out">This project aims to develop and evaluate machine learning models for COVID-19 forecasting in the United States and compare their performance with models</span>
+			</div>
+			<div class="abstract-full" style="display:none;">
+				The outbreak of the COVID-19 pandemic has highlighted the critical need for accurate forecasting models to understand and predict the spread of the virus. This project aims to develop and evaluate machine learning models for COVID-19 forecasting in the United States and compare their performance with models submitted to the Centers for Disease Control and Prevention (CDC). The objective is to enhance the accuracy and effectiveness of pandemic prediction and support informed decision-making.
+			</div>
+		
+		
+		
+		
 	  
 <p>
           <div class="item">
@@ -120,19 +179,13 @@ support informed decision-making.
 <b>Towards foundation model for viral diseases</b>,
 Doctor of Philosophy (PHD), University of Georgia, 2025 (expected).
 </p>
-<details>
-    <summary>Abstract</summary>
-<p>
-Viral diseases have had a significant global impact, affecting millions of people worldwide. Estimating the potential number of positive cases is crucial for 
-controlling disease spread and allocating necessary resources effectively. However, in the early stages of an outbreak, limited data availability poses 
-significant challenges for accurate estimation. Additionally, employing individual models for each disease in specific regions proves less efficient. 
-This work aims to train a foundation model on viral diseases, enabling estimation of positive cases during outbreaks and for existing diseases.
-Several existing foundation models are trained on different datasets spanning various domains. These models cannot adapt to the specific characteristics 
-of viral disease related data. These models operate in a channel-independent manner, thus failing to assess the interactions among different variables. 
-Yet, variables such as the number of affected and vaccinated cases are pivotal in enhancing the results within the domain of viral diseases. 
-This endeavor seeks to develop a domain-specific foundation model tailored specifically for viral diseases, adapted to the unique data characteristics.
-</p>
-</details>
+<div id="abstract-preview" class="abstract-preview">
+	Viral diseases have had a significant global impact, affecting millions of people worldwide. Estimating the potential number of positive cases is crucial for controlling disease spread
+	<span class="fade-out">and allocating necessary resources effectively. However, in the early stages of an outbreak, limited data availability</span>
+</div>
+<div class="abstract-full" style="display:none;">
+	Viral diseases have had a significant global impact, affecting millions of people worldwide. Estimating the potential number of positive cases is crucial for controlling disease spread and allocating necessary resources effectively. However, in the early stages of an outbreak, limited data availability poses significant challenges for accurate estimation. Additionally, employing individual models for each disease in specific regions proves less efficient. This work aims to train a foundation model on viral diseases, enabling estimation of positive cases during outbreaks and for existing diseases. Several existing foundation models are trained on different datasets spanning various domains. These models cannot adapt to the specific characteristics of viral disease related data. These models operate in a channel-independent manner, thus failing to assess the interactions among different variables. Yet, variables such as the number of affected and vaccinated cases are pivotal in enhancing the results within the domain of viral diseases. This endeavor seeks to develop a domain-specific foundation model tailored specifically for viral diseases, adapted to the unique data characteristics.
+</div>
 	  
 <p>
    <div class="item">
@@ -144,22 +197,13 @@ This endeavor seeks to develop a domain-specific foundation model tailored speci
 <b><a href="https://esploro.libs.uga.edu/esploro/outputs/doctoral/Modeling-Traffic-Flow-With-Microscopic-Discrete/9949510412402959">Modeling Traffic Flow With Microscopic Discrete Event Simulation</a></b>,
 Doctor of Philosophy (PHD), University of Georgia, 12/2022.
 </p>
-<details>
-    <summary>Abstract</summary>
-<p>
-Everyday billions of people around the world face the task of driving their vehicles in the traffic of their region. For many this entails entering very heavy traffic flows centered around large cities, with long commute times, on their way to work.
-For others, the issue is that they need to drive to a special event, or are just driving through the city on the way to another destination.
-Whatever the reason, drivers have a strong desire to know what the general traffic flow is along the route they plan to use. 
-Major cities employ traffic engineers to deal with the problem of managing the large traffic flows for which they are responsible. From routine highway and road maintenance, to redesigning existing interchanges, to constructing completely new throughways, city planners face the challenge of meeting the population's demand for efficient road networks. 
-For both sets of circumstances above, the desire for tools to make traffic-related decision-making easier is quite substantial. Microscopic traffic simulation has a lot to offer for modeling and forecasting traffic flows.
-These simulations are not only models of the overall flow of vehicles, but model the detailed interactions of the cars themselves, allowing for a depth of analysis not possible with other modeling techniques.
-Indeed, microscopic traffic simulation can offer prescriptive solutions to traffic problems, where, for example, city planners can try out different solutions for traffic design, without having to actually construct anything. 
-In order to build an effective and accurate traffic simulation model, there are many tasks that must be completed. The specific data for an area must be analyzed and used to build a realistic arrival model. 
-A car-following model must be chosen, so that the vehicles in the simulation behave in a realistic manner.
-Finally, the various parameters of these models must be fine-tuned with a calibration technique so that the models are as accurate (or as efficient) as possible.
-This work analyzes the arrival problem, chooses two well-known car-following models, and applies several calibration methodologies in an effort to identify the best means by which to build the traffic simulation model.
-</p>
-</details>
+<div class="abstract-preview">
+	Everyday billions of people around the world face the task of driving their vehicles in the traffic of their region. For many this entails entering very heavy traffic flows centered around
+	<span class="fade-out">large cities, with long commute times, on their way to work. For others, the issue is that they need to drive to a special event</span>
+</div>
+<div class="abstract-full" style="display:none;">
+	Everyday billions of people around the world face the task of driving their vehicles in the traffic of their region. For many this entails entering very heavy traffic flows centered around large cities, with long commute times, on their way to work. For others, the issue is that they need to drive to a special event, or are just driving through the city on the way to another destination. Whatever the reason, drivers have a strong desire to know what the general traffic flow is along the route they plan to use. Major cities employ traffic engineers to deal with the problem of managing the large traffic flows for which they are responsible. From routine highway and road maintenance, to redesigning existing interchanges, to constructing completely new throughways, city planners face the challenge of meeting the population's demand for efficient road networks. For both sets of circumstances above, the desire for tools to make traffic-related decision-making easier is quite substantial. Microscopic traffic simulation has a lot to offer for modeling and forecasting traffic flows. These simulations are not only models of the overall flow of vehicles, but model the detailed interactions of the cars themselves, allowing for a depth of analysis not possible with other modeling techniques. Indeed, microscopic traffic simulation can offer prescriptive solutions to traffic problems, where, for example, city planners can try out different solutions for traffic design, without having to actually construct anything. In order to build an effective and accurate traffic simulation model, there are many tasks that must be completed. The specific data for an area must be analyzed and used to build a realistic arrival model. A car-following model must be chosen, so that the vehicles in the simulation behave in a realistic manner. Finally, the various parameters of these models must be fine-tuned with a calibration technique so that the models are as accurate (or as efficient) as possible. This work analyzes the arrival problem, chooses two well-known car-following models, and applies several calibration methodologies in an effort to identify the best means by which to build the traffic simulation model.
+</div>
 	  
 <p>
    <div class="item">
@@ -172,12 +216,13 @@ This work analyzes the arrival problem, chooses two well-known car-following mod
 <a href="https://esploro.libs.uga.edu/esploro/outputs/doctoral/Modeling-and-Interpreting-High-Dimensional-Spaces/9949390359302959">Modeling and Interpreting High-Dimensional Spaces</a></b>,
 Doctor of Philosophy (PHD), University of Georgia, 8/2021.
 </p>
-<details>
-    <summary>Abstract</summary>
-<p>
-Curse of dimensionality in modeling occurs when the subject of study is analyzed in high-dimensional data, while it cannot be easily identifiable in low dimensional spaces. But migrating to higher dimensional spaces causes challenges in modeling and interpretation of the subject. Advances in machine learning, particularly in the form of neural networks, supposedly tackles the challenge of modeling, but such techniques require a plethora of input data for training. Additionally, those techniques can be opaque and brittle when they highly become performant as a result of learning in complex spaces. It is not directly understandable as to why and when they work well, and why they may fail entirely when faced with new cases not seen in the training data. In this dissertation, we tackle those issues by proposing two techniques. (1) In the case of modeling, we propose a novel method that can help unlock the power of neural networks on limited data to produce competitive results. With extensive experiments, we demonstrate that our proposed method can be effective on limited data, and we test and evaluate our method on intermediate length time-series data that may not be suitable for simple neural networks due to lack of data with high-dimensional features. (2) In the interpretation context, we propose a new framework for 2-D interpreting (features and samples) black-box machine learning models via a metamodeling technique. Our interpretable toolset can explain the behavior and verify the properties of black-box models, by which we study the output and input relationships of the underlying machine learning models. We show how our method facilitates the analysis of a black-box, aiding practitioners to demystify its behavior, and in turn, providing transparency towards learning better and more reliable models
-</p>
-</details>
+<div class="abstract-preview">
+	Curse of dimensionality in modeling occurs when the subject of study is analyzed in high-dimensional data, while it cannot be easily identifiable in low dimensional spaces.
+	<span class="fade-out">But migrating to higher dimensional spaces causes challenges in modeling and interpretation of the subject. Advances in machine learning,</span>
+</div>
+<div class="abstract-full" style="display:none;">
+	Curse of dimensionality in modeling occurs when the subject of study is analyzed in high-dimensional data, while it cannot be easily identifiable in low dimensional spaces. But migrating to higher dimensional spaces causes challenges in modeling and interpretation of the subject. Advances in machine learning, particularly in the form of neural networks, supposedly tackles the challenge of modeling, but such techniques require a plethora of input data for training. Additionally, those techniques can be opaque and brittle when they highly become performant as a result of learning in complex spaces. It is not directly understandable as to why and when they work well, and why they may fail entirely when faced with new cases not seen in the training data. In this dissertation, we tackle those issues by proposing two techniques. (1) In the case of modeling, we propose a novel method that can help unlock the power of neural networks on limited data to produce competitive results. With extensive experiments, we demonstrate that our proposed method can be effective on limited data, and we test and evaluate our method on intermediate length time-series data that may not be suitable for simple neural networks due to lack of data with high-dimensional features. (2) In the interpretation context, we propose a new framework for 2-D interpreting (features and samples) black-box machine learning models via a metamodeling technique. Our interpretable toolset can explain the behavior and verify the properties of black-box models, by which we study the output and input relationships of the underlying machine learning models. We show how our method facilitates the analysis of a black-box, aiding practitioners to demystify its behavior, and in turn, providing transparency towards learning better and more reliable models
+</div>
 	  
 <p>
    <div class="item">
@@ -190,14 +235,13 @@ Curse of dimensionality in modeling occurs when the subject of study is analyzed
 <a href="https://esploro.libs.uga.edu/esploro/outputs/doctoral/Classification-Using-Transfer-Learning-on-Structured/9949365645202959">Classification Using Transfer Learning on Structured Healthcare Data</a></b>,
 Doctor of Philosophy (PHD), University of Georgia, 8/2020.
 </p>
-<details>
-    <summary>Abstract</summary>
-<p>
-Recently deep learning has been used as a new classification platform and has been applied to many domains. In some domains such as bioinformatics and healthcare constructing a large-scale well annotated data-set is very difficult. As such labeled data are limited. This structured data in healthcare are small data-set and because of that deep learning approaches do not perform well on their classification. Transfer learning relaxes the hypothesis that learning should occur purely based on specific data-sets, which motivates us to use transfer learning to solve the problem of insufficient training data. In this dissertation, I introduce my efforts toward creating a complete, fully automated, and efficient deep transfer learning method to handle the imbalanced data of breast cancer. I compared our results with state-of-the-art techniques for addressing problems of imbalanced learning, poor performance learning, and confirmed the superiority of the proposed methods. I conducted a meta-analysis to analyze the status of healthcare-related Transfer Learning (TL) studies in terms of the study targets, TL model(s) used, Healthcare data, type of study area, and level of classification accuracy achieved. Subsequently, a detailed review is conducted to describe/discuss how TL has been applied for improving the accuracy of diagnosis in healthcare including images, text, audio, video and structured Electronic Health Record data classification. I further present my deep transfer learning model to improve the accuracy of classification in diabetes disease. Finally, I demonstrate the significant performance gains of our model compared to state of art techniques for classification. Based on the experimental results, we concluded that the proposed deep transfer learning on 
-structured data can be used as an efficient method to handle 
-imbalanced classes and poor performance learning on small dataset problems in clinical research.
-</p>
-</details>
+<div class="abstract-preview">
+	Recently deep learning has been used as a new classification platform and has been applied to many domains. In some domains such as bioinformatics and healthcare constructing a large-scale
+	<span class="fade-out">well annotated data-set is very difficult. As such labeled data are limited. This structured data in healthcare are small</span>
+</div>
+<div class="abstract-full" style="display:none;">
+	Recently deep learning has been used as a new classification platform and has been applied to many domains. In some domains such as bioinformatics and healthcare constructing a large-scale well annotated data-set is very difficult. As such labeled data are limited. This structured data in healthcare are small data-set and because of that deep learning approaches do not perform well on their classification. Transfer learning relaxes the hypothesis that learning should occur purely based on specific data-sets, which motivates us to use transfer learning to solve the problem of insufficient training data. In this dissertation, I introduce my efforts toward creating a complete, fully automated, and efficient deep transfer learning method to handle the imbalanced data of breast cancer. I compared our results with state-of-the-art techniques for addressing problems of imbalanced learning, poor performance learning, and confirmed the superiority of the proposed methods. I conducted a meta-analysis to analyze the status of healthcare-related Transfer Learning (TL) studies in terms of the study targets, TL model(s) used, Healthcare data, type of study area, and level of classification accuracy achieved. Subsequently, a detailed review is conducted to describe/discuss how TL has been applied for improving the accuracy of diagnosis in healthcare including images, text, audio, video and structured Electronic Health Record data classification. I further present my deep transfer learning model to improve the accuracy of classification in diabetes disease. Finally, I demonstrate the significant performance gains of our model compared to state of art techniques for classification. Based on the experimental results, we concluded that the proposed deep transfer learning on structured data can be used as an efficient method to handle imbalanced classes and poor performance learning on small dataset problems in clinical research.
+</div>
 	
 <p>
    <div class="item">
@@ -210,12 +254,13 @@ imbalanced classes and poor performance learning on small dataset problems in cl
 <a href="https://esploro.libs.uga.edu/esploro/outputs/doctoral/Forecasting-vehicle-traffic-with-big-data/9949333936902959">Forecasting vehicle traffic with big data</a></b>,
 University of Georgia, Doctor of Philosophy (PHD), University of Georgia, Summer 2019.
 </p>
-<details>
-    <summary>Abstract</summary>
-<p>
-Traffic forecasting is an important issue in several aspects. It may help governments and city planners make better decisions in regards to an intelligent transportation system. Traffic app developers and everyday travelers/commuters would also be interested in such matters. This work contains an overview of the recent developments in the area of traffic forecasting. In recent years, the availability of large amounts of traffic data has paved the way for data scientists to train models with big data to obtain better accuracy. An extensive study on forecasting traffic flow is given, covering various statistical and machine learning models, while shedding light on the most recent and state-of-art modeling techniques in this field. Furthermore, we studied the traffic forecasting problem using a situation-aware approach. Differing from a purely data-driven modeling approach, in which the models are tasked with learning everything from the data, we have chosen to be proactively aware of traffic affecting situations that could help guide the model building process. Examples may include the appropriate selection or removal of certain features and the choice of training data when we are aware of certain events that may cause traffic patterns to deviate from the norm, such as a weather condition or a holiday. As a result, we can obtain forecasts that are generally more accurate and models that are more interpretable. Remaining aware of certain situations can therefore effectively complement the popular data-driven modeling approach. We also present the Quadratic Extreme Learning Machine model in this work. The model generally exhibits improved performance over the standard Extreme Learning Machine model while remaining relatively efficient. It may be a viable alternative to the generally more computationally costly Neural Networks.
-</p>
-</details>
+<div class="abstract-preview">
+	Traffic forecasting is an important issue in several aspects. It may help governments and city planners make better decisions in regards to an intelligent transportation system.
+	<span class="fade-out">Traffic app developers and everyday travelers/commuters would also be interested in such matters. This work contains an overview</span>
+</div>
+<div class="abstract-full" style="display:none;">
+	Traffic forecasting is an important issue in several aspects. It may help governments and city planners make better decisions in regards to an intelligent transportation system. Traffic app developers and everyday travelers/commuters would also be interested in such matters. This work contains an overview of the recent developments in the area of traffic forecasting. In recent years, the availability of large amounts of traffic data has paved the way for data scientists to train models with big data to obtain better accuracy. An extensive study on forecasting traffic flow is given, covering various statistical and machine learning models, while shedding light on the most recent and state-of-art modeling techniques in this field. Furthermore, we studied the traffic forecasting problem using a situation-aware approach. Differing from a purely data-driven modeling approach, in which the models are tasked with learning everything from the data, we have chosen to be proactively aware of traffic affecting situations that could help guide the model building process. Examples may include the appropriate selection or removal of certain features and the choice of training data when we are aware of certain events that may cause traffic patterns to deviate from the norm, such as a weather condition or a holiday. As a result, we can obtain forecasts that are generally more accurate and models that are more interpretable. Remaining aware of certain situations can therefore effectively complement the popular data-driven modeling approach. We also present the Quadratic Extreme Learning Machine model in this work. The model generally exhibits improved performance over the standard Extreme Learning Machine model while remaining relatively efficient. It may be a viable alternative to the generally more computationally costly Neural Networks.
+</div>
 	
 <p>
    <div class="item">
@@ -228,17 +273,13 @@ Traffic forecasting is an important issue in several aspects. It may help govern
 and knowledge-driven learning</a></b>,
 Doctor of Philosophy (PHD), University of Georgia, Winter 2018.
 </p>
-<details>
-    <summary>Abstract</summary>
-<p>
-Social media has reshaped communication in the last decade, supporting interactionand community development among participants who would never otherwise meet. It provides opportunities to users for sharing 
-	information and expressing their opinions on specific topics. Recent studies show that social media is immensely instrumental in changing, and measuring public opinions on particular issues. 
-	These open platforms bring the freedom to users to disseminate informationfor changing the public opinion and the normative behaviors of users through implementing a persuasive discourse on 
-	certain topics. While some accounts choose to share promotional information about their products to influence the public opinion, some other malicious-intended accounts share misinformation or 
-	propagandato persuade others. In this research, we use marijuana and radicalization related communications as focal cases, employing a context-aware and knowledge-driven approach for modeling the 
-	persona in these persuasive discussions on social media.
-</p>
-</details>
+<div class="abstract-preview">
+	Social media has reshaped communication in the last decade, supporting interactionand community development among participants who would never otherwise meet.
+	<span class="fade-out">It provides opportunities to users for sharing information and expressing their opinions on specific topics. Recent studies show</span>
+</div>
+<div class="abstract-full" style="display:none;">
+	Social media has reshaped communication in the last decade, supporting interactionand community development among participants who would never otherwise meet. It provides opportunities to users for sharing information and expressing their opinions on specific topics. Recent studies show that social media is immensely instrumental in changing, and measuring public opinions on particular issues. These open platforms bring the freedom to users to disseminate informationfor changing the public opinion and the normative behaviors of users through implementing a persuasive discourse on certain topics. While some accounts choose to share promotional information about their products to influence the public opinion, some other malicious-intended accounts share misinformation or propagandato persuade others. In this research, we use marijuana and radicalization related communications as focal cases, employing a context-aware and knowledge-driven approach for modeling the persona in these persuasive discussions on social media.
+</div>
 
 <p>
    <div class="item">
@@ -251,12 +292,13 @@ Social media has reshaped communication in the last decade, supporting interacti
 <a href="https://esploro.libs.uga.edu/esploro/outputs/doctoral/Ontology-based-semantics-vs-meta-learning-for-predictive/9949333439002959">Ontology-based semantics vs meta-learning for predictive big data analytics</a></b>,
 University of Georgia, Doctor of Philosophy (PHD), University of Georgia, Winter 2017.
 </p>
-<details>
-    <summary>Abstract</summary>
-<p>
-Predictive analytics in the big data era is taking on an ever increasingly important role. Issues related to choice on modeling technique, estimation procedure (or algorithm) and efficient execution can present significant challenges. For example, the selection of appropriate and most predictive models (i.e., the models that maximize the chosen performance criteria such as lowest error) for big data analytics often requires careful investigation and considerable expertise which might not always be readily available. In this thesis, we propose two alternative methods to assist data analysts and data scientists in selecting appropriate modeling techniques and building specific models as well as the rationale for the techniques and models selected. The first approach uses ontology-based semantics to assist selecting the most predictive model for a given dataset. To formally describe the modeling techniques, models, and results, we developed the Analytics Ontology that supports inferencing for semi-automated model selection. The ScalaTion framework, which currently supports over sixty modeling techniques for big data analytics, is used as a testbed for evaluating the use of semantic technology.In the second approach, we present a meta-learning system for selecting the most predictive regression algorithm in a predictive big data analytics setting. The meta-learning system uses meta-features characterizing the aspects of the dataset to select most predictive modeling techniques for that dataset.  We show that our meta-learning system provides promising performance in predicting top performing modeling techniques for a given dataset. In addition to evaluating the system against existing baseline approaches, we also compare meta-learning approach with the ontology-assisted suggestion engine.Finally, we present detailed performance analysis of the regression algorithms, namely Lasso and Ridge Regression, that we have implemented in ScalaTion and show that they provide robust performance compared to R, both in terms of training time and error.
-</p>
-</details>
+<div class="abstract-preview">
+	Predictive analytics in the big data era is taking on an ever increasingly important role. Issues related to choice on modeling technique, estimation procedure (or algorithm) and efficient
+	<span class="fade-out">execution can present significant challenges. For example, the selection of appropriate and most predictive models </span>
+</div>
+<div class="abstract-full" style="display:none;">
+	Predictive analytics in the big data era is taking on an ever increasingly important role. Issues related to choice on modeling technique, estimation procedure (or algorithm) and efficient execution can present significant challenges. For example, the selection of appropriate and most predictive models (i.e., the models that maximize the chosen performance criteria such as lowest error) for big data analytics often requires careful investigation and considerable expertise which might not always be readily available. In this thesis, we propose two alternative methods to assist data analysts and data scientists in selecting appropriate modeling techniques and building specific models as well as the rationale for the techniques and models selected. The first approach uses ontology-based semantics to assist selecting the most predictive model for a given dataset. To formally describe the modeling techniques, models, and results, we developed the Analytics Ontology that supports inferencing for semi-automated model selection. The ScalaTion framework, which currently supports over sixty modeling techniques for big data analytics, is used as a testbed for evaluating the use of semantic technology.In the second approach, we present a meta-learning system for selecting the most predictive regression algorithm in a predictive big data analytics setting. The meta-learning system uses meta-features characterizing the aspects of the dataset to select most predictive modeling techniques for that dataset. We show that our meta-learning system provides promising performance in predicting top performing modeling techniques for a given dataset. In addition to evaluating the system against existing baseline approaches, we also compare meta-learning approach with the ontology-assisted suggestion engine.Finally, we present detailed performance analysis of the regression algorithms, namely Lasso and Ridge Regression, that we have implemented in ScalaTion and show that they provide robust performance compared to R, both in terms of training time and error.
+</div>
 	
 <p>
    <div class="item">
@@ -269,12 +311,13 @@ Predictive analytics in the big data era is taking on an ever increasingly impor
 <a href="https://esploro.libs.uga.edu/esploro/outputs/doctoral/Supporting-open-science-in-big-data/9949334364402959">Supporting open science in big data frameworks and data science education</a></b>,
 University of Georgia, Doctor of Philosophy (PHD), University of Georgia, Winter 2017.
 </p>
-<details>
-    <summary>Abstract</summary>
-<p>
-As the prevalence of data grows throughout the Big Data era, so does a need to provide and improve tools for the education and application of data-driven analytics and scientific investigation. The main contributions of this research can be summarized as follows: i) We provide an overview of the open source ScalaTion project, a big data framework that supports big data analytics, simulation modeling, and functional data analysis. ii) We outline some of the Functional Data support in ScalaTion, including a performance comparison for the evaluation of B-spline basis functions that shows that our method is faster than some other popular libraries. iii) To demonstrate how to provide lightweight big data framework integration in open notebooks, we present the open source ScalaTion Kernel project, a custom Jupyter kernel that enables ScalaTion support in Jupyter notebooks. iv) To demonstrate research using ScalaTion, we outline and evaluate atight clustering algorithm, written using ScalaTion, for the functional data analysis of time course omics data. v) To promote reproducibility in open science, we present the Applied Open Data Science (AODS) project, a collection of customized web applications for the hosting and sharing of open notebooks with ScalaTion support. This project also includes shareable, executable, and modifiable example notebooks that utilize ScalaTion to demonstrate various data science topics as well as detailed documentation on how to easily reproduce the environment in which the notebooks are hosted. Specifically, we propose and demonstrate, via readily accessible examples, methods to facilitate openness and reproducibility (both of results and infrastructure) in data science investigations using a big data framework.
-</p>
-</details>
+<div class="abstract-preview">
+	As the prevalence of data grows throughout the Big Data era, so does a need to provide and improve tools for the education and application of data-driven analytics and scientific investigation.
+	<span class="fade-out">The main contributions of this research can be summarized as follows: i) We provide an overview of the open source ScalaTion</span>
+</div>
+<div class="abstract-full" style="display:none;">
+	As the prevalence of data grows throughout the Big Data era, so does a need to provide and improve tools for the education and application of data-driven analytics and scientific investigation. The main contributions of this research can be summarized as follows: i) We provide an overview of the open source ScalaTion project, a big data framework that supports big data analytics, simulation modeling, and functional data analysis. ii) We outline some of the Functional Data support in ScalaTion, including a performance comparison for the evaluation of B-spline basis functions that shows that our method is faster than some other popular libraries. iii) To demonstrate how to provide lightweight big data framework integration in open notebooks, we present the open source ScalaTion Kernel project, a custom Jupyter kernel that enables ScalaTion support in Jupyter notebooks. iv) To demonstrate research using ScalaTion, we outline and evaluate atight clustering algorithm, written using ScalaTion, for the functional data analysis of time course omics data. v) To promote reproducibility in open science, we present the Applied Open Data Science (AODS) project, a collection of customized web applications for the hosting and sharing of open notebooks with ScalaTion support. This project also includes shareable, executable, and modifiable example notebooks that utilize ScalaTion to demonstrate various data science topics as well as detailed documentation on how to easily reproduce the environment in which the notebooks are hosted. Specifically, we propose and demonstrate, via readily accessible examples, methods to facilitate openness and reproducibility (both of results and infrastructure) in data science investigations using a big data framework.
+</div>
 	
 <p>
    <div class="item">
@@ -287,22 +330,13 @@ As the prevalence of data grows throughout the Big Data era, so does a need to p
 Doctor of Philosophy (PHD), University of Georgia,
 Winter 2016.
 </p>
-<details>
-    <summary>Abstract</summary>
-<p>
-Formalized knowledge engineering activities including semantic annotation and linked data management tasks in specialized domains suffer from considerable knowledge acquisition bottleneck - owing to the lack of availability 
-	of experts and in-efficacy of automated approaches. Human Computation & Crowdsourcing (HC&C) methods successfully advocate leveraging the human intelligence and processing power to solve problems that are still difficult 
-	to be solved computationally. Contextualized to the domain of Islamic Knowledge, this research investigates the synergistic interplay of these HC&C methods and the semantic web and proposes a semantics driven human-machine 
-	computation framework for knowledge engineering in specialized and knowledge intensive domains. The overall objective is to augment the process of automated knowledge extraction and text mining methods using a hybrid 
-	approach for combining collective intelligence of the crowds with that of experts to facilitate activities in formalized knowledge engineering - thus overcoming the so-called knowledge acquisition bottleneck. As part 
-	of this framework, we design and implement formal and scalable knowledge acquisition workflows through the application of semantics driven crowdsourcing methodology and its specialized derivative, called learnersourcing.  
-	We evaluate these methods and workflows for a range of knowledge engineering tasks including thematic classification, thematic disambiguation, thematic annotation and contextual interlinking for two primary Islamic texts, 
-	namely the Qur'an and the books of Prophetic narrations called the Hadith. This is done at various levels of granularity, including atomic and composite task workflows, that existing research fails to address. We leverage 
-	primarily upon students and learners engaging in typical knowledge seeking and learning scenarios. The chosen method ensures annotation reliability by introducing an 'expert sourcing' workflow tightly integrated within 
-	the system. Therefore, quantitative measures of ensuring annotation quality are woven into the very fabric of the human computation framework. The results of our evaluation demonstrate that our proposed methods are robust 
-	and are capable of generating high quality and reliable annotations, while significantly reducing the need for expert contributions.
-</p>
-</details>
+<div class="abstract-preview">
+	Formalized knowledge engineering activities including semantic annotation and linked data management tasks in specialized domains suffer from considerable knowledge acquisition bottleneck
+	<span class="fade-out">- owing to the lack of availability of experts and in-efficacy of automated approaches. Human Computation & Crowdsourcing</span>
+</div>
+<div class="abstract-full" style="display:none;">
+	Formalized knowledge engineering activities including semantic annotation and linked data management tasks in specialized domains suffer from considerable knowledge acquisition bottleneck - owing to the lack of availability of experts and in-efficacy of automated approaches. Human Computation & Crowdsourcing (HC&C) methods successfully advocate leveraging the human intelligence and processing power to solve problems that are still difficult to be solved computationally. Contextualized to the domain of Islamic Knowledge, this research investigates the synergistic interplay of these HC&C methods and the semantic web and proposes a semantics driven human-machine computation framework for knowledge engineering in specialized and knowledge intensive domains. The overall objective is to augment the process of automated knowledge extraction and text mining methods using a hybrid approach for combining collective intelligence of the crowds with that of experts to facilitate activities in formalized knowledge engineering - thus overcoming the so-called knowledge acquisition bottleneck. As part of this framework, we design and implement formal and scalable knowledge acquisition workflows through the application of semantics driven crowdsourcing methodology and its specialized derivative, called learnersourcing. We evaluate these methods and workflows for a range of knowledge engineering tasks including thematic classification, thematic disambiguation, thematic annotation and contextual interlinking for two primary Islamic texts, namely the Qur'an and the books of Prophetic narrations called the Hadith. This is done at various levels of granularity, including atomic and composite task workflows, that existing research fails to address. We leverage primarily upon students and learners engaging in typical knowledge seeking and learning scenarios. The chosen method ensures annotation reliability by introducing an 'expert sourcing' workflow tightly integrated within the system. Therefore, quantitative measures of ensuring annotation quality are woven into the very fabric of the human computation framework. The results of our evaluation demonstrate that our proposed methods are robust and are capable of generating high quality and reliable annotations, while significantly reducing the need for expert contributions.
+</div>
 	
 <p>
    <div class="item">
@@ -315,12 +349,13 @@ Formalized knowledge engineering activities including semantic annotation and li
 <a href="https://esploro.libs.uga.edu/esploro/outputs/doctoral/Scaling-up-machine-learning-algorithms-to/9949332930802959">Scaling up machine learning algorithms to handle big data</a></b>,
 University of Georgia, Doctor of Philosophy (PHD), University of Georgia, Winter 2014.
 </p>
-<details>
-    <summary>Abstract</summary>
-<p>
-Machine learning algorithms are very useful in many disciplines like speech recognition, bioinformatics, recommendations, decision making, etc. These algorithms gain more importance in the big data era due to the power of the data driven solutions. Machine learning algorithms are considered the core of data driven models. However, scalability is considered crucial requirement for all the machine learning algorithms as well as any computational model. In order to scale up the machine learning algorithms to handle big data, two basic techniques can be followed: 1- The parallelization of the existing sequential algorithms. This technique is what Apache Mahout and Apache Spark follow to scale up the machine learning algorithms. 2- Re-design the structure of existing models to overcome the scalability limitation. The result of this technique (which is more challenging) is new models which extend the existing ones, like the Continuous Bag-of-Words model. In this thesis we apply the second technique to extend a well known machine learning technique which is Bayesian Networks to handle big data in a very efficient time and space manner. The proposed model will lead to an easily-scalable, more readable, and expressive implementation for problems that require probabilistic solutions for massive amounts of hierarchical data. We successfully applied this model to solve three different challenging probabilistic problems, namely, multi-label classification, latent semantic discovery, and semantically ambiguous keywords discovery on massive data sets. The model was successfully tested on a single machine as well as on a Hadoop cluster of 69 data nodes.
-</p>
-</details>
+<div class="abstract-preview">
+	Machine learning algorithms are very useful in many disciplines like speech recognition, bioinformatics, recommendations, decision making, etc. These algorithms gain more importance
+	<span class="fade-out">in the big data era due to the power of the data driven solutions. Machine learning algorithms are considered the core of data driven</span>
+</div>
+<div class="abstract-full" style="display:none;">
+	Machine learning algorithms are very useful in many disciplines like speech recognition, bioinformatics, recommendations, decision making, etc. These algorithms gain more importance in the big data era due to the power of the data driven solutions. Machine learning algorithms are considered the core of data driven models. However, scalability is considered crucial requirement for all the machine learning algorithms as well as any computational model. In order to scale up the machine learning algorithms to handle big data, two basic techniques can be followed: 1- The parallelization of the existing sequential algorithms. This technique is what Apache Mahout and Apache Spark follow to scale up the machine learning algorithms. 2- Re-design the structure of existing models to overcome the scalability limitation. The result of this technique (which is more challenging) is new models which extend the existing ones, like the Continuous Bag-of-Words model. In this thesis we apply the second technique to extend a well known machine learning technique which is Bayesian Networks to handle big data in a very efficient time and space manner. The proposed model will lead to an easily-scalable, more readable, and expressive implementation for problems that require probabilistic solutions for massive amounts of hierarchical data. We successfully applied this model to solve three different challenging probabilistic problems, namely, multi-label classification, latent semantic discovery, and semantically ambiguous keywords discovery on massive data sets. The model was successfully tested on a single machine as well as on a Hadoop cluster of 69 data nodes.
+</div>
 	
 <p>
    <div class="item">
@@ -333,12 +368,13 @@ Machine learning algorithms are very useful in many disciplines like speech reco
 <a href="https://esploro.libs.uga.edu/esploro/outputs/doctoral/Subgraph-pattern-matching-models-algorithms-and/9949334291502959">Subgraph pattern matching: models, algorithms, and techniques</a></b>,
 University of Georgia, Doctor of Philosophy (PHD), University of Georgia, Summer 2014.
 </p>
-<details>
-    <summary>Abstract</summary>
-<p>
-Subgraph pattern matching is a fundamental operation for many applications, and it is exhaustively studied in its classical forms. Nevertheless, there are newly emerging applications, like analyzing hyperlinks of the web graph and analyzing associations in a social network, that need to process massive graphs in a timely manner. Regarding the extremely large size of these graphs and knowledge they represent, not only new computing platforms are needed, but also old models and algorithms should be revised. In recent years, a few pattern matching models have been introduced that can promise a new avenue for pattern matching research on extremely massive graphs. In this research, we study a family of subgraph pattern matching models called graph simulation, and propose two new models, called strict and tight simulation, to increase their efficiency while preserving the quality of their results. Moreover, we propose a new set of conditions, namely cardinality restriction, that can improve the expressiveness of most models in this family.Several graph processing frameworks like Pregel have recently sought to harness shared nothing clusters for processing massive graphs through a vertex-centric, Bulk Synchronous Parallel (BSP) programming model. However, developing scalable and efficient BSP-based algorithms for pattern matching is very challenging on these frameworks because this problem does not naturally align with a vertex-centric programming paradigm. We design and implement novel distributed algorithms based on the vertex-centric programming paradigm for efficient subgraph pattern matching. Our algorithms are fine tuned to consider the challenges of pattern matching on massive data graphs. Furthermore, we present an extensive set of experiments involving massive graphs (millions of vertices and billions of edges) to study the effects of various parameters on the scalability and performance of the proposed algorithms.Regarding the fact that pattern matching can be considered as an important type of queries for a graph database- either centralized or distributed- we study the problem of pattern containment and caching techniques specified for subgraph pattern matching. The proposed caching technique works based on the tight simulation model. Nevertheless, it is also possible to use it for subgraph isomorphic queries. We identify the main challenges of such a system, and our experiments show the effectiveness of the proposed solutions.
-</p>
-</details>
+<div class="abstract-preview">
+	Subgraph pattern matching is a fundamental operation for many applications, and it is exhaustively studied in its classical forms. Nevertheless, there are newly emerging applications, like analyzing
+	<span class="fade-out">hyperlinks of the web graph and analyzing associations in a social network, that need to process massive graphs in a timely</span>
+</div>
+<div class="abstract-full" style="display:none;">
+	Subgraph pattern matching is a fundamental operation for many applications, and it is exhaustively studied in its classical forms. Nevertheless, there are newly emerging applications, like analyzing hyperlinks of the web graph and analyzing associations in a social network, that need to process massive graphs in a timely manner. Regarding the extremely large size of these graphs and knowledge they represent, not only new computing platforms are needed, but also old models and algorithms should be revised. In recent years, a few pattern matching models have been introduced that can promise a new avenue for pattern matching research on extremely massive graphs. In this research, we study a family of subgraph pattern matching models called graph simulation, and propose two new models, called strict and tight simulation, to increase their efficiency while preserving the quality of their results. Moreover, we propose a new set of conditions, namely cardinality restriction, that can improve the expressiveness of most models in this family.Several graph processing frameworks like Pregel have recently sought to harness shared nothing clusters for processing massive graphs through a vertex-centric, Bulk Synchronous Parallel (BSP) programming model. However, developing scalable and efficient BSP-based algorithms for pattern matching is very challenging on these frameworks because this problem does not naturally align with a vertex-centric programming paradigm. We design and implement novel distributed algorithms based on the vertex-centric programming paradigm for efficient subgraph pattern matching. Our algorithms are fine tuned to consider the challenges of pattern matching on massive data graphs. Furthermore, we present an extensive set of experiments involving massive graphs (millions of vertices and billions of edges) to study the effects of various parameters on the scalability and performance of the proposed algorithms.Regarding the fact that pattern matching can be considered as an important type of queries for a graph database- either centralized or distributed- we study the problem of pattern containment and caching techniques specified for subgraph pattern matching. The proposed caching technique works based on the tight simulation model. Nevertheless, it is also possible to use it for subgraph isomorphic queries. We identify the main challenges of such a system, and our experiments show the effectiveness of the proposed solutions.
+</div>
 	
 <p>
    <div class="item">
@@ -351,12 +387,13 @@ Subgraph pattern matching is a fundamental operation for many applications, and 
 <a href="https://esploro.libs.uga.edu/esploro/outputs/doctoral/The-use-of-ontologies-in-discrete-event/9949334195502959">The use of ontologies in discrete-event simulation</a></b>,
 University of Georgia, Doctor of Philosophy (PHD), University of Georgia, Spring 2013.
 </p>
-<details>
-    <summary>Abstract</summary>
-<p>
-Several fields have created ontologies for their subdomains. For example, the biological sciences have developed extensive ontologies such as the Gene Ontology (GO), which is considered a great success. Ontologies could provide similar advantages to the Modeling and Simulation community. They provide a way to establish common vocabularies and capture knowledge about a particular domain with community-wide agreement. Ontologies can support significantly improved (semantic) search and browsing, integration of heterogeneous information sources and improved knowledge discovery capabilities. This work discusses the design and development of an ontology for Modeling and Simulation called the Discrete-event Modeling Ontology (DeMO), and it presents prototype applications which demonstrate various uses and benefits that such an ontology may provide to the Modeling and Simulation community.
-</p>
-</details>
+<div class="abstract-preview">
+	Several fields have created ontologies for their subdomains. For example, the biological sciences have developed extensive ontologies such as the Gene Ontology (GO), which is considered
+	<span class="fade-out">a great success. Ontologies could provide similar advantages to the Modeling and Simulation community. </span>
+</div>
+<div class="abstract-full" style="display:none;">
+	Several fields have created ontologies for their subdomains. For example, the biological sciences have developed extensive ontologies such as the Gene Ontology (GO), which is considered a great success. Ontologies could provide similar advantages to the Modeling and Simulation community. They provide a way to establish common vocabularies and capture knowledge about a particular domain with community-wide agreement. Ontologies can support significantly improved (semantic) search and browsing, integration of heterogeneous information sources and improved knowledge discovery capabilities. This work discusses the design and development of an ontology for Modeling and Simulation called the Discrete-event Modeling Ontology (DeMO), and it presents prototype applications which demonstrate various uses and benefits that such an ontology may provide to the Modeling and Simulation community.
+</div>
 	
 <p>
    <div class="item">
@@ -369,34 +406,13 @@ Several fields have created ontologies for their subdomains. For example, the bi
 <a href="https://esploro.libs.uga.edu/esploro/outputs/doctoral/Quantitative-glycomics-using-simulation-optimization/9949334848302959">Quantitative glycomics using simulation optimization</a></b>,
 University of Georgia, Doctor of Philosophy (PHD), University of Georgia, Summer 2012.
 </p>
-<details>
-    <summary>Abstract</summary>
-<p>
-Simulation optimization is attracting increasing interest within the modeling and simulation
-research community. Although much research effort has focused on how to apply a variety of simulation optimization techniques to solve diverse practical and research problems,
-researchers find that existing optimization routines are difficult to extend or integrate and
-often require one to develop their own optimization methods because the existing ones are
-problem-specific and not designed for reuse. A Semantically Enriched Environment for Simulation Optimization (SEESO) is being developed to address these issues. By implementing
-generalized semantic descriptions of the optimization process, SEESO facilitates reuse of the
-available optimization routines and more effectively captures the essence of different simulation optimization techniques. This enrichment is based on the existing Discrete-event
-Modeling Ontology (DeMO) and the emerging Simulation oPTimization (SoPT) ontologies.
-SoPT includes concepts from both conventional optimization/mathematical programming
-and simulation optimization. Represented in ontological form, optimization routines can
-also be transformed into actual executable application code (e.g., targeting JSIM or ScalaTion). As illustrative examples, SEESO is being applied to several simulation optimization
-problems.
-Mass spectrometry (MS) has emerged as the preeminent tool for performing quantitative
-glycomics analysis. However, the accuracy of these analyses is often compromised by the
-instrumental artifacts, such as low signal to noise ratios and mass-dependent differential ion
-responses. Methods have been developed to address some of these issues by introducing
-stable isotopes to the glycans under study, but these methods require robust computational
-methods to determine the abundances of various isotopic forms derived from different experimental sources. An automated simulation framework for MS-based quantitative glycomics,
-GlycoQuant, is proposed and implemented to address these issues. Instead of manipulating
-the experimental data directly, GlycoQuant simulates the experimental data based on a glycan’s theoretical isotopic distribution and takes various forms of error sources into consideration. It has been applied to analyze the MS raw data generated from IDAWG experiments
-and obtained satisfactory results in the estimation of (1) the ratio of relative abundances of
-N-enriched and natural abundance glycans in a mixture and (2) the 50% degradation time
-of N-enriched glycan and its “remodeling coefficient” at this time point.
-</p>
-</details>
+<div class="abstract-preview">
+	Simulation optimization is attracting increasing interest within the modeling and simulation research community. Although much research effort has focused on how to apply a variety
+	<span class="fade-out">of simulation optimization techniques to solve diverse practical and research problems, researchers find that existing optimization</span>
+</div>
+<div class="abstract-full" style="display:none;">
+	Simulation optimization is attracting increasing interest within the modeling and simulation research community. Although much research effort has focused on how to apply a variety of simulation optimization techniques to solve diverse practical and research problems, researchers find that existing optimization routines are difficult to extend or integrate and often require one to develop their own optimization methods because the existing ones are problem-specific and not designed for reuse. A Semantically Enriched Environment for Simulation Optimization (SEESO) is being developed to address these issues. By implementing generalized semantic descriptions of the optimization process, SEESO facilitates reuse of the available optimization routines and more effectively captures the essence of different simulation optimization techniques. This enrichment is based on the existing Discrete-event Modeling Ontology (DeMO) and the emerging Simulation oPTimization (SoPT) ontologies. SoPT includes concepts from both conventional optimization/mathematical programming and simulation optimization. Represented in ontological form, optimization routines can also be transformed into actual executable application code (e.g., targeting JSIM or ScalaTion). As illustrative examples, SEESO is being applied to several simulation optimization problems. Mass spectrometry (MS) has emerged as the preeminent tool for performing quantitative glycomics analysis. However, the accuracy of these analyses is often compromised by the instrumental artifacts, such as low signal to noise ratios and mass-dependent differential ion responses. Methods have been developed to address some of these issues by introducing stable isotopes to the glycans under study, but these methods require robust computational methods to determine the abundances of various isotopic forms derived from different experimental sources. An automated simulation framework for MS-based quantitative glycomics, GlycoQuant, is proposed and implemented to address these issues. Instead of manipulating the experimental data directly, GlycoQuant simulates the experimental data based on a glycan’s theoretical isotopic distribution and takes various forms of error sources into consideration. It has been applied to analyze the MS raw data generated from IDAWG experiments and obtained satisfactory results in the estimation of (1) the ratio of relative abundances of N-enriched and natural abundance glycans in a mixture and (2) the 50% degradation time of N-enriched glycan and its “remodeling coefficient” at this time point.
+</div>
 	
 <p>
    <div class="item">
@@ -409,12 +425,13 @@ of N-enriched glycan and its “remodeling coefficient” at this time point.
 <a href="https://esploro.libs.uga.edu/esploro/outputs/doctoral/Algorithms-for-semi-automatic-Web-service-composition/9949334105102959">Algorithms for semi-automatic Web service composition: data mediation and service suggestion</a></b>,
 University of Georgia, Doctor of Philosophy (PHD), University of Georgia, Spring 2011.
 </p>
-<details>
-    <summary>Abstract</summary>
-<p>
-This dissertation presents a semi-automatic Web service composition approach, which works by ranking all the candidate Web service operations and suggesting service operations to a human designer during the process of Web service composition. The ranking scores are determined by computing sub-scores related to inputs/outputs, data mediation, functionality and precondition/effects. A formal graph model, namely IODAG, is defined to formalize an input/output schema of a Web service operation. Three data mediation algorithms are developed to handle the data heterogeneities arising during Web service composition. The data mediation algorithms analyze the schema of the input/output of service operations and consider the structure of the schema. Typed representations for the data mediation algorithms are presented, which formalize the data mediation problem as a subtype-checking problem. An evaluation is performed to study the effectiveness of different data mediation and service suggestion algorithms as well as the effectiveness of semantic annotations used to assist human designers composing Web services.
-</p>
-</details>
+<div class="abstract-preview">
+	This dissertation presents a semi-automatic Web service composition approach, which works by ranking all the candidate Web service operations and suggesting service operations to a human designer
+	<span class="fade-out">during the process of Web service composition. The ranking scores are determined by computing sub-scores related to</span>
+</div>
+<div class="abstract-full" style="display:none;">
+	This dissertation presents a semi-automatic Web service composition approach, which works by ranking all the candidate Web service operations and suggesting service operations to a human designer during the process of Web service composition. The ranking scores are determined by computing sub-scores related to inputs/outputs, data mediation, functionality and precondition/effects. A formal graph model, namely IODAG, is defined to formalize an input/output schema of a Web service operation. Three data mediation algorithms are developed to handle the data heterogeneities arising during Web service composition. The data mediation algorithms analyze the schema of the input/output of service operations and consider the structure of the schema. Typed representations for the data mediation algorithms are presented, which formalize the data mediation problem as a subtype-checking problem. An evaluation is performed to study the effectiveness of different data mediation and service suggestion algorithms as well as the effectiveness of semantic annotations used to assist human designers composing Web services.
+</div>
 	
 <p>
    <div class="item">
@@ -427,12 +444,13 @@ This dissertation presents a semi-automatic Web service composition approach, wh
 <a href="https://esploro.libs.uga.edu/esploro/outputs/doctoral/Scalability-and-efficiency-in-personalized-Web/9949332930902959">Scalability and efficiency in personalized Web services</a></b>,
 University of Georgia, Doctor of Philosophy (PHD), University of Georgia, Summer 2010.
 </p>
-<details>
-    <summary>Abstract</summary>
-<p>
-Web 2.0 has been growing at a rapid pace empowering end-users with a vast set of applications dedicated to improve their experience while using the Web. This improvement comes in the shape of increased personalization that enables the end users to navigate and search the Web based on their own needs. One of the key icons of Web 2.0 applications is mashups; they are essentially Web services that are often created by end-users. They aggregate and manipulate data from sources around the World Wide Web. Surprisingly, research related to mashups performance received little attention in research community. In this dissertation, we provide architectures, protocols, and schemes to enhance mashups performance and scalability. We provide improvement over mashup execution by defining a protocol and a set of rules that change the ordinary mashup execution paradigm. Further, we design caching protocol to utilize data reusability in mashups which results in more efficient mashup execution. Moreover, we propose a distributed mashup architecture which increases the scalability of mashup platforms. All the former techniques and protocols are backed up with a set of experiments proving their effectiveness in transforming mashup execution to a more efficient and scalable process.
-</p>
-</details>
+<div class="abstract-preview">
+	Web 2.0 has been growing at a rapid pace empowering end-users with a vast set of applications dedicated to improve their experience while using the Web. This improvement comes in the shape
+	<span class="fade-out">of increased personalization that enables the end users to navigate and search the Web based on their own needs.</span>
+</div>
+<div class="abstract-full" style="display:none;">
+	Web 2.0 has been growing at a rapid pace empowering end-users with a vast set of applications dedicated to improve their experience while using the Web. This improvement comes in the shape of increased personalization that enables the end users to navigate and search the Web based on their own needs. One of the key icons of Web 2.0 applications is mashups; they are essentially Web services that are often created by end-users. They aggregate and manipulate data from sources around the World Wide Web. Surprisingly, research related to mashups performance received little attention in research community. In this dissertation, we provide architectures, protocols, and schemes to enhance mashups performance and scalability. We provide improvement over mashup execution by defining a protocol and a set of rules that change the ordinary mashup execution paradigm. Further, we design caching protocol to utilize data reusability in mashups which results in more efficient mashup execution. Moreover, we propose a distributed mashup architecture which increases the scalability of mashup platforms. All the former techniques and protocols are backed up with a set of experiments proving their effectiveness in transforming mashup execution to a more efficient and scalable process.
+</div>
 	
 <p>
    <div class="item">
@@ -445,12 +463,13 @@ Web 2.0 has been growing at a rapid pace empowering end-users with a vast set of
 <a href="https://esploro.libs.uga.edu/esploro/outputs/doctoral/Graph-summaries-for-optimizing-graph-pattern/9949333751302959">Graph summaries for optimizing graph pattern queries on RDF databases</a></b>,
 University of Georgia, Doctor of Philosophy (PHD), University of Georgia, Spring 2009.
 </p>
-<details>
-    <summary>Abstract</summary>
-<p>
-The adoption of the Resource Description Framework (RDF) as a metadata representation standard is spurring the development of high-level mechanisms for storing and querying RDF data. Many of the proposed systems are built on Relational/Object-Relational Databases with a translation of queries posed in the supported RDF query language to SQL for processing by the database. Graph pattern matching which matches a query graph against a data graph, often require join operations. To process join operations, the database optimizer determines an optimal join order from a cost model which employs the expected cardinality of join results as a key parameter. This parameter is estimated from a statistical summary of the data maintained in memory. In this work, we argue that the data summarization technique employed by database systems are oblivious of the graph structure of RDF data and may lead to estimation errors which result in the choice of a sub-optimal query plan. We present and evaluate two techniques for estimating the frequency of subgraphs utilizing a small statistical summary of the graph, based on occurrences. In the first technique, we summarize the graph in the P-Tree by pruning small subgraphs based on a valuation scheme that blends information about their importance and estimation power. In the second technique, we assume that edge occurrences on edge sequences of length maxL are position independent. We then summarize the most informative dependencies in the MD-Tree. In both techniques, we assume conditional independence to estimate the frequencies of larger subgraphs. We present extensive experiments on real world and synthetic datasets which confirm the feasibility of our approach. Our experiments are geared towards showing that the estimates obtained from the proposed summaries are accurate as well as effective for optimizing graph pattern queries posed over RDF graphs.
-</p>
-</details>
+<div class="abstract-preview">
+	The adoption of the Resource Description Framework (RDF) as a metadata representation standard is spurring the development of high-level mechanisms for storing and querying RDF data.
+	<span class="fade-out">Many of the proposed systems are built on Relational/Object-Relational Databases with a translation of queries posed in the supported</span>
+</div>
+<div class="abstract-full" style="display:none;">
+	The adoption of the Resource Description Framework (RDF) as a metadata representation standard is spurring the development of high-level mechanisms for storing and querying RDF data. Many of the proposed systems are built on Relational/Object-Relational Databases with a translation of queries posed in the supported RDF query language to SQL for processing by the database. Graph pattern matching which matches a query graph against a data graph, often require join operations. To process join operations, the database optimizer determines an optimal join order from a cost model which employs the expected cardinality of join results as a key parameter. This parameter is estimated from a statistical summary of the data maintained in memory. In this work, we argue that the data summarization technique employed by database systems are oblivious of the graph structure of RDF data and may lead to estimation errors which result in the choice of a sub-optimal query plan. We present and evaluate two techniques for estimating the frequency of subgraphs utilizing a small statistical summary of the graph, based on occurrences. In the first technique, we summarize the graph in the P-Tree by pruning small subgraphs based on a valuation scheme that blends information about their importance and estimation power. In the second technique, we assume that edge occurrences on edge sequences of length maxL are position independent. We then summarize the most informative dependencies in the MD-Tree. In both techniques, we assume conditional independence to estimate the frequencies of larger subgraphs. We present extensive experiments on real world and synthetic datasets which confirm the feasibility of our approach. Our experiments are geared towards showing that the estimates obtained from the proposed summaries are accurate as well as effective for optimizing graph pattern queries posed over RDF graphs.
+</div>
 	
 <p>
    <div class="item">
@@ -462,20 +481,13 @@ The adoption of the Resource Description Framework (RDF) as a metadata represent
 <b><a href="https://esploro.libs.uga.edu/esploro/outputs/doctoral/Ontology-driven-question-answering-and-ontology-quality/9949334105902959">Ontology-driven question answering and ontology quality evaluation</a></b>,
 Doctor of Philosophy (PHD), University of Georgia, Summer 2009.
 </p>
-<details>
-    <summary>Abstract</summary>
-<p>
-As more data is being semantically annotated, it is getting more common that researchers in multiple disciplines to rely on semantic repositories that contain large amounts of data in the form of ontologies 
-as a compact source of information. One of the main issues currently facing these researchers is the lack of easy-to-use interfaces for data retrieval, due to the need to use special query languages or applications. 
-In addition, the knowledge in these repositories might not be comprehensive or up-to-date due to several reasons, such as the discovery of new knowledge in the field after the repositories was created. In this 
-dissertation, we present our SemanticQA system that allows users to query semantic data repositories using natural language questions. If a user question cannot be answered solely from the ontology, SemanticQA 
-detects the failing parts and attempts to answer these parts from web documents and plugs in the answers to answer the whole questions, which might involve a repetition of the same process if other parts fail.
-At the same time, with the large number of ontologies being added constantly, it is difficult for users to find ontologies that are suitable to their work. Therefore, tools for evaluating and ranking the ontologies 
-are needed. For this purpose, we present OntoQA, a tool that evaluates ontologies related to a certain set of terms and then ranks them according a set of metrics that captures different aspects of ontologies. 
-Since there are no global criteria defining how a good ontology should be, OntoQA allows users to tune the ranking towards certain features of ontologies to suit the need of their applications. OntoQA is not 
-only useful for users trying to find suitable ontologies, but for ontology developers who are looking for measures to evaluate their product.
-</p>	
-</details>
+<div class="abstract-preview">
+	As more data is being semantically annotated, it is getting more common that researchers in multiple disciplines to rely on semantic repositories that contain large amounts of data
+	<span class="fade-out">in the form of ontologies as a compact source of information. One of the main issues currently facing these researchers is the lack of</span>
+</div>
+<div class="abstract-full" style="display:none;">
+	As more data is being semantically annotated, it is getting more common that researchers in multiple disciplines to rely on semantic repositories that contain large amounts of data in the form of ontologies as a compact source of information. One of the main issues currently facing these researchers is the lack of easy-to-use interfaces for data retrieval, due to the need to use special query languages or applications. In addition, the knowledge in these repositories might not be comprehensive or up-to-date due to several reasons, such as the discovery of new knowledge in the field after the repositories was created. In this dissertation, we present our SemanticQA system that allows users to query semantic data repositories using natural language questions. If a user question cannot be answered solely from the ontology, SemanticQA detects the failing parts and attempts to answer these parts from web documents and plugs in the answers to answer the whole questions, which might involve a repetition of the same process if other parts fail. At the same time, with the large number of ontologies being added constantly, it is difficult for users to find ontologies that are suitable to their work. Therefore, tools for evaluating and ranking the ontologies are needed. For this purpose, we present OntoQA, a tool that evaluates ontologies related to a certain set of terms and then ranks them according a set of metrics that captures different aspects of ontologies. Since there are no global criteria defining how a good ontology should be, OntoQA allows users to tune the ranking towards certain features of ontologies to suit the need of their applications. OntoQA is not only useful for users trying to find suitable ontologies, but for ontology developers who are looking for measures to evaluate their product.
+</div>
 	
 <p>
    <div class="item">
@@ -488,33 +500,13 @@ only useful for users trying to find suitable ontologies, but for ontology devel
 <a href="https://esploro.libs.uga.edu/esploro/outputs/doctoral/Using-Web-services-to-integrate-data/9949334202502959">Using Web services to integrate data and compose analytic tools in the life sciences</a></b>,
 University of Georgia, Doctor of Philosophy (PHD), University of Georgia, Summer 2008.
 </p>
-<details>
-    <summary>Abstract</summary>
-<p>
-Advances in technology and computational approaches have resulted in an explosive
-increase in the quantity of biological data. How biologists share data and analytical tools
-efficiently is becoming a fundamental issue. One of the promising technologies to handle this
-challenge is Web service technology, which provides advanced features such as language
-independence, platform independence, compliance with universal standards and decoupling of
-service from client.
-At the end of 2007, there were 1078 biological databases. Providing biologists central and
-uniform access to all types of data stored in biological databases is becoming critical. To
-minimize disruption of current operations, maintain local autonomy and handle heterogeneities,
-federated databases and Web services have been proposed as a viable solution. This dissertation
-explores this situation and reports on our experience with testing multiple approaches for
-biological database integration. It discusses the trade-offs among performance, support for
-heterogeneity, robustness and scalability. Of significance is the discovery that the most flexible
-approach, Web Services, performs very competitively.
-Given the increasing prevalence of Web services that access biological data from multiple
-different locations and databases, we have seen an increasing interest in biological Web service 
-composition to perform complex bioinformatics tasks. Although some research on composing
-biological Web services has been performed, resulting in tools such as BioMoby and Taverna,
-these tools are still too difficult to be easily used by the average biologist. Therefore, lowering
-the learning curve for Web service composition is a critical need. With this objective in mind,
-we have designed and implemented WS-BioZard, a new and comprehensive framework using
-multiple technologies and semi-automatic service composition to address this need.
-</p>
-</details>
+<div class="abstract-preview">
+	Advances in technology and computational approaches have resulted in an explosive increase in the quantity of biological data. How biologists share data and analytical tools efficiently is becoming
+	<span class="fade-out">a fundamental issue. One of the promising technologies to handle this challenge is Web service technology, which provides</span>
+</div>
+<div class="abstract-full" style="display:none;">
+	Advances in technology and computational approaches have resulted in an explosive increase in the quantity of biological data. How biologists share data and analytical tools efficiently is becoming a fundamental issue. One of the promising technologies to handle this challenge is Web service technology, which provides advanced features such as language independence, platform independence, compliance with universal standards and decoupling of service from client. At the end of 2007, there were 1078 biological databases. Providing biologists central and uniform access to all types of data stored in biological databases is becoming critical. To minimize disruption of current operations, maintain local autonomy and handle heterogeneities, federated databases and Web services have been proposed as a viable solution. This dissertation explores this situation and reports on our experience with testing multiple approaches for biological database integration. It discusses the trade-offs among performance, support for heterogeneity, robustness and scalability. Of significance is the discovery that the most flexible approach, Web Services, performs very competitively. Given the increasing prevalence of Web services that access biological data from multiple different locations and databases, we have seen an increasing interest in biological Web service composition to perform complex bioinformatics tasks. Although some research on composing biological Web services has been performed, resulting in tools such as BioMoby and Taverna, these tools are still too difficult to be easily used by the average biologist. Therefore, lowering the learning curve for Web service composition is a critical need. With this objective in mind, we have designed and implemented WS-BioZard, a new and comprehensive framework using multiple technologies and semi-automatic service composition to address this need.
+</div>
 	
 <p>
    <div class="item">
@@ -527,24 +519,13 @@ multiple technologies and semi-automatic service composition to address this nee
 Doctor of Philosophy (PHD), University of Georgia,
 Summer 2007.
 </p>
-<details>
-    <summary>Abstract</summary>
-<p>
-In todays web search technologies, the link structure of the web plays a critical role. In this work, the goal is to use semantic relationships for ranking documents without relying on the existence of any specific 
-	    structure in a document or links between documents. Instead, named/real-world entities are identified and the relevance of documents is determined using relationships that are known to exist between 
-	    the entities in a populated ontology, that is, by connecting-the-dots. We introduce a measure of relevance that is based on traversal and the semantics of relationships that link entities in an ontology. 
-	    The implementation of the methods described here builds upon an existing architecture for processing unstructured information that solves some of the scalability aspects for text processing, indexing and 
-	    basic keyword/entity document retrieval. The contributions of this thesis are in demonstrating the role and benefits of using relationships for ranking documents when a user types a traditional keyword query. 
-	    The research components that make this possible are as follows. First, a flexible semantic discovery and ranking component takes user-defined criteria for identification of the most interesting semantic 
-	    associations between entities in an ontology. Second, semantic analytics techniques substantiate feasibility of the discovery of relevant associations between entities in an ontology of large scale such as 
-	    that resulting from integrating a collaboration network with a social network (i.e., for a total of over 3 million entities). In particular, one technique is introduced to measure relevance of the nearest 
-	    or neighboring entities to a particular entity from a populated ontology. Last, the relevance of documents is determined based on the underlying concept of exploiting semantic relationships among entities 
-	    in the context of a populated ontology. Our research involves new capabilities in combining the relevance measure techniques along with using or adapting earlier capabilities of semantic metadata extraction, 
-	    semantic annotation, practical domain-specific ontology creation, fast main-memory query processing of semantic associations, and document-indexing capabilities that include keyword and annotation-based document 
-	    retrieval. We expect that the semantic relationship-based ranking approach will be either an alternative or a complement to widely deployed document search for finding highly relevant documents that traditional 
-	    syntactic and statistical techniques cannot find.
-</p>   
-</details>
+<div class="abstract-preview">
+	In todays web search technologies, the link structure of the web plays a critical role. In this work, the goal is to use semantic relationships for ranking documents without relying on the existence of
+	<span class="fade-out">any specific structure in a document or links between documents. Instead, named/real-world entities are identified and the relevance of</span>
+</div>
+<div class="abstract-full" style="display:none;">
+	In todays web search technologies, the link structure of the web plays a critical role. In this work, the goal is to use semantic relationships for ranking documents without relying on the existence of any specific structure in a document or links between documents. Instead, named/real-world entities are identified and the relevance of documents is determined using relationships that are known to exist between the entities in a populated ontology, that is, by connecting-the-dots. We introduce a measure of relevance that is based on traversal and the semantics of relationships that link entities in an ontology. The implementation of the methods described here builds upon an existing architecture for processing unstructured information that solves some of the scalability aspects for text processing, indexing and basic keyword/entity document retrieval. The contributions of this thesis are in demonstrating the role and benefits of using relationships for ranking documents when a user types a traditional keyword query. The research components that make this possible are as follows. First, a flexible semantic discovery and ranking component takes user-defined criteria for identification of the most interesting semantic associations between entities in an ontology. Second, semantic analytics techniques substantiate feasibility of the discovery of relevant associations between entities in an ontology of large scale such as that resulting from integrating a collaboration network with a social network (i.e., for a total of over 3 million entities). In particular, one technique is introduced to measure relevance of the nearest or neighboring entities to a particular entity from a populated ontology. Last, the relevance of documents is determined based on the underlying concept of exploiting semantic relationships among entities in the context of a populated ontology. Our research involves new capabilities in combining the relevance measure techniques along with using or adapting earlier capabilities of semantic metadata extraction, semantic annotation, practical domain-specific ontology creation, fast main-memory query processing of semantic associations, and document-indexing capabilities that include keyword and annotation-based document retrieval. We expect that the semantic relationship-based ranking approach will be either an alternative or a complement to widely deployed document search for finding highly relevant documents that traditional syntactic and statistical techniques cannot find.
+</div>
 	
 <p>
    <div class="item">
@@ -557,12 +538,13 @@ In todays web search technologies, the link structure of the web plays a critica
 <a href="https://esploro.libs.uga.edu/esploro/outputs/doctoral/Configuration-and-adaptation-of-semantic-web/9949334141002959">Configuration and adaptation of semantic web processes</a></b>,
 University of Georgia, Doctor of Philosophy (PHD), University of Georgia, Summer 2006.
 </p>
-<details>
-    <summary>Abstract</summary>
-<p>
-As Web services and service oriented architectures become pervasive in the business and scientific environments, there has been a growing focus on representing business and scientific processes using Web service based processes or Web processes. While workflow and other automation technologies have existed for a couple of decades, tools and frameworks in this space do not provide adequate support for the dynamism and adaptability required to represent and execute real world processes.  With technological advances (e.g., RFID) that help in generating real time data, the next generation of Web process frameworks must evolve to provide capabilities for handling and reacting to such events. In addition, the large scale standardization of all aspects of businesses has set the stage for businesses to configure their processes on the fly with new or pre-existing business partners. This thesis is one of the first attempts to create a comprehensive framework for dynamic configuration and adaptation of Web processes. While we have evaluated this framework in the context of a supply chain, we believe that this framework can also be applied to other business and scientific processes. Our work is based on using a semantic framework that uses ontologies and semantic descriptions of Web services as an enabler of the two capabilities. The semantic descriptions of Web services are based on our recent W3C member submission WSDL-S. Much work has been done in operations research for business process optimization. However, there is a lot of domain knowledge that is used in conjunction with operations research techniques by experts for decision making. We explore adding greater automation to this decision making by capturing this domain knowledge in ontologies and using it in conjunction with Integer Linear Programming for dynamic process configuration. The other problem we address is that of process adaptation. While other approaches exist for process adaptation, none of them have considered uncertainly about when the event may occur. We present adaptation as a stochastic decision making problem and present an approach that uses Markov Decision Processes. Both configuration and adaptation have been evaluated comprehensively and our results clearly demonstrate their benefits.
-</p>
-</details>
+<div class="abstract-preview">
+	As Web services and service oriented architectures become pervasive in the business and scientific environments, there has been a growing focus on representing business and scientific processe
+	<span class="fade-out">using Web service based processes or Web processes. While workflow and other automation technologies have existed for</span>
+</div>
+<div class="abstract-full" style="display:none;">
+	As Web services and service oriented architectures become pervasive in the business and scientific environments, there has been a growing focus on representing business and scientific processes using Web service based processes or Web processes. While workflow and other automation technologies have existed for a couple of decades, tools and frameworks in this space do not provide adequate support for the dynamism and adaptability required to represent and execute real world processes. With technological advances (e.g., RFID) that help in generating real time data, the next generation of Web process frameworks must evolve to provide capabilities for handling and reacting to such events. In addition, the large scale standardization of all aspects of businesses has set the stage for businesses to configure their processes on the fly with new or pre-existing business partners. This thesis is one of the first attempts to create a comprehensive framework for dynamic configuration and adaptation of Web processes. While we have evaluated this framework in the context of a supply chain, we believe that this framework can also be applied to other business and scientific processes. Our work is based on using a semantic framework that uses ontologies and semantic descriptions of Web services as an enabler of the two capabilities. The semantic descriptions of Web services are based on our recent W3C member submission WSDL-S. Much work has been done in operations research for business process optimization. However, there is a lot of domain knowledge that is used in conjunction with operations research techniques by experts for decision making. We explore adding greater automation to this decision making by capturing this domain knowledge in ontologies and using it in conjunction with Integer Linear Programming for dynamic process configuration. The other problem we address is that of process adaptation. While other approaches exist for process adaptation, none of them have considered uncertainly about when the event may occur. We present adaptation as a stochastic decision making problem and present an approach that uses Markov Decision Processes. Both configuration and adaptation have been evaluated comprehensively and our results clearly demonstrate their benefits.
+</div>
 	
     <!-- 
 	    		<h2 style="margin-top: 25px; color: black" id="Theses">Theses
@@ -596,7 +578,8 @@ As Web services and service oriented architectures become pervasive in the busin
 	</div>
 
     
-  <script src="/assets/js/main.min.js"></script>
+  <!-- <script src="/assets/js/main.min.js">
+  </script> -->
 
   
 
