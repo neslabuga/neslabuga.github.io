@@ -3837,7 +3837,6 @@ body {
 
 .item {
     height: 130px;
-    width: 27%;
     display: flex;
     margin-right: 40px;
 }
